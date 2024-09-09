@@ -11,8 +11,8 @@ export class LoginComponent implements OnInit {
    data="Your Perfect Banking Partner"
    inputplaceholder="Account number"
 
-   acno=" "  // acno:any
-   password=" "
+   //acno=" "  // acno:any
+   //password=" "
 
 
   userDetails:any={
@@ -30,17 +30,67 @@ export class LoginComponent implements OnInit {
     
   }
 
-  login(){
-    alert("login clicked")
-  }
+  //login(){
+ 
+  //  var acnum=this.acno
+  //  var psw=this.password
+   // var userDetails=this.userDetails
 
-  acnochange(event:any){
-     this.acno=event.target.value
-     console.log(this.acno);
+    //if(acnum in userDetails){
+       //   if(psw==userDetails[acnum]["password"]){
+     //  alert("login successfully")
+   // }
+   
+   // else{
+     // alert("incurrect password")
+    //}
+
+  //}
+    //else{
+    //  alert("account number is incurrect or not registerd")
+  //  }
+
+
+    //alert("login clicked")
+  //}
+
+   // acnochange(event:any){
+   //  this.acno=event.target.value
+     //console.log(this.acno);
+ // }
+
+ // pswchange(event:any){
+   // this.password=event.target.value
+    //console.log(this.password);
+ // }
+
+
+login(a:any,b:any){
+ 
+  var acnum=a.value
+  var psw=b.value
+  var userDetails=this.userDetails
+
+  if(acnum in userDetails){
+        if(psw==userDetails[acnum]["password"]){
+     alert("login successfully")
   }
  
-  pswchange(event:any){
-    this.password=event.target.value
-    console.log(this.password);
+  else{
+    alert("incurrect password")
   }
+
+}
+  else{
+    alert("account number is incurrect or not registerd")
+  }
+
+
+  //alert("login clicked")
+}  
+
+
+
+
+
 }
