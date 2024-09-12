@@ -29,35 +29,15 @@ export class LoginComponent implements OnInit {
  
     var acnum=this.acno
     var psw=this.password
-    var userDetails=this.ds.userDetails
-
-    if(acnum in userDetails){
-          if(psw==userDetails[acnum]["password"]){
-       alert("login successfully")
-       this.router.navigateByUrl('dashboard')
-    }
-   
-    else{
-     alert("incurrect password")
-    }
-
-  }
-    else{
-      alert("account number is incurrect or not registerd")
-    }
-
-
-    alert("login clicked")
-  }
-
-    acnochange(event:any){
-     this.acno=event.target.value
-     console.log(this.acno);
-  }
-
-  pswchange(event:any){
-   this.password=event.target.value
-    console.log(this.password);
+    
+   const result= this.ds.login(acnum,psw)
+   if(result){
+    alert("login success")
+    this.router.navigateByUrl("dashboard")
+   }
+   else{
+    alert("incurrect password or account number")
+   }
  }
 
 
