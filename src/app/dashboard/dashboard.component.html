@@ -1,1 +1,69 @@
-<h3>Welcome {{user}}</h3>
+<h1>Welcome {{user}}</h1>
+
+     <div class="cintainer row">
+
+    <div class="text-center container col-lg-6 cl-md-12">
+    <div class="container w-75 rounded text-center p-5 mt-5"  style="background-color: rgba(255, 255, 255, 0.241);">
+
+<div class="text-center container col-6">
+
+
+    <h3>Deposit Form</h3>
+
+    <form action="">
+        
+         <div class="p-3 mt-2">
+            <input type="text"   [(ngModel)]="acno1"   id="acid1"   name="acnum1"  class="form-control"  placeholder="account number">
+        </div>
+
+        <div class="p-3 mt-2">
+            <input type="password"  [(ngModel)]="psw1"   id="pswid1"   name="paswrd1" class="form-control" placeholder="Password">
+        </div>
+        <div class="p-3 mt-2">
+            <input type="text"  [(ngModel)]="amount1"    id="amountid1"   name="amount1"  class="form-control"  placeholder="deposit amount">
+        </div>
+
+        <div class="p-3 mt-2">
+            <button type="button"   (click)="deposit()"           class="btn btn-outline-info">Deposit</button>
+        </div>               
+
+    </form>
+</div>
+</div>
+</div>
+
+
+
+<div class="text-center container col-lg-6 cl-md-12">
+
+ <div class="container w-75  rounded text-center p-5 mt-5"  style="background-color: rgba(255, 255, 255, 0.266);">
+
+<div class="text-center container col-6">
+  
+    <h3 class=>Withdrawl Form</h3>
+
+    <form action="">
+        
+         <div class="p-3 mt-2">
+            <input type="text"  [(ngModel)]="acno2"    id="acid2"   name="acnum2"  class="form-control"  placeholder="account number">
+        </div>
+
+        <div class="p-3 mt-2">
+            <input type="password"  [(ngModel)]="psw2"   id="pswid2"   name="paswrd2" class="form-control" placeholder="Password">
+        </div>
+        <div class="p-3 mt-2">
+            <input type="text"  [(ngModel)]="amount2"    id="amountid2"   name="amount2"  class="form-control"  placeholder="withdrawl amount">
+        </div>
+
+        <div class="p-3 mt-2">
+            <button type="button"   (click)="withdrawl()"    class="btn btn-outline-info">Withdrawl</button>
+        </div>               
+
+    </form>
+</div>
+
+</div>
+
+</div>
+
+</div>

@@ -37,7 +37,7 @@ export class RegisterComponent implements  OnInit {
         alert("account number is already registerd")
       }
 
-    console.log(username,accnumber,password)
+    console.log(username,accnumber,password);
   }
   
   
