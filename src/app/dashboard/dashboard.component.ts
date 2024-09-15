@@ -37,7 +37,7 @@ deposit(){
   
   const result=this.ds.deposit(acno1,psw1,amount1)
   if(result){          //here we can put anything without FALSE considered as true
-       alert(`your AC has been credited ${result}. and available balance ${amount1} `)
+       alert(`your AC has been credited ${amount1}. and available balance ${result} `)
   }
   else{
     alert("incorrect account number or password")
@@ -52,7 +52,7 @@ withdrawl(){
   var amount2=this.amount2
   const result= this.ds.withdrawl(acno2,psw2,amount2)
   if(result){
-    alert(`your AC has been debited ${result}. and available balance is ${amount2}`)
+    alert(`your AC has been debited ${amount2}. and available balance is ${result}`)
   }
 
 }
