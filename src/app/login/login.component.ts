@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,18 +14,18 @@ export class LoginComponent implements OnInit {
    data="Your Perfect Banking Partner"
    inputplaceholder="account Number"
 
-   acno:any         // acno: ""
-   password:any
 
-   userDetails:any={
-    1000:{acno:1000,username:"anu",password:"123a",balance:0},
-    1001:{acno:1001,username:"dev",password:"123d",balance:0},
-    1002:{acno:1002,username:"hima",password:"123h",balance:0},
-    1003:{acno:1003,username:"rudhru",password:"123r",balance:0}
- }
+  
   
 
-  constructor(private router:Router, private ds:DataService){ }
+  constructor(private router:Router, private ds:DataService,private fb:FormBuilder){ }
+
+  //model form
+  loginForm=this.fb.group({
+  acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+  password:['',[Validators.required,Validators.pattern('[0-9A-Za-z]+')]]
+})
+
 
   ngOnInit(): void {
     
@@ -32,22 +33,22 @@ export class LoginComponent implements OnInit {
 
   login(){
  
-    var acnum=this.acno
-    var psw=this.password
+    var acnum=this.loginForm.value.acno
+    var psw=this.loginForm.value.password
     
+    if(this.loginForm.valid){
    const result= this.ds.login(acnum,psw)
    if(result){
     alert("login success")
     this.router.navigateByUrl("dashboard")
    }
    else{
-    alert("incorrect password or account number")
+    alert(" Error! invalid password or account number")
+   }
+  }
+   else{
+    alert(" Error! invalid information")
    }
  }
-
-
-
-
-
 
 }

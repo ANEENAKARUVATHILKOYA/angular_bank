@@ -5,14 +5,24 @@
     
     <h1>Sign In To Bank Account</h1>
     
-    <form action="" (ngSubmit)="login()">
+    <form    [formGroup]="loginForm"   action=""  (ngSubmit)="login()">
         <div class="p-3 mt-2">
-            <input type="text"    [(ngModel)]="acno"      id="acid"   name="acnum1"  class="form-control"  [placeholder]="inputplaceholder">
+            <input type="text"   formControlName="acno"      id="acid"   name="acnum1"  class="form-control"  [placeholder]="inputplaceholder">
         </div>
 
-        <div class="p-3 mt-2">
-            <input type="password"   [(ngModel)]="password"   id="psw1"  name="paswrd1"  class="form-control" placeholder="password">
+        <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+            <p class="text-light"> contain digits only</p>
         </div>
+
+
+        <div class="p-3 mt-2">
+            <input type="password"     formControlName="password"   id="psw1"  name="paswrd1"  class="form-control" placeholder="password">
+        </div>
+
+        <div *ngIf="this.loginForm.get('password')?.errors && this.loginForm.get('password')?.touched">
+            <p class="text-light"> contain digits and characters only</p>
+        </div>
+
 
         <div class="p-3 mt-2">
             <button type="submit"       class="btn btn-outline-info">login</button>

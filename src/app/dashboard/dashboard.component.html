@@ -17,18 +17,31 @@
 
     <h3>Deposit Form</h3>
 
-    <form action="">
+    <form action=""    [formGroup]="depositForm">
         
          <div class="p-3 mt-2">
-            <input type="text"   [(ngModel)]="acno1"   id="acid1"   name="acnum1"  class="form-control"  placeholder="account number">
+            <input type="text"      formControlName="acno1"   id="acid1"   name="acnum1"  class="form-control"  placeholder="account number">
+        </div>
+        <div *ngIf="this.depositForm.get('acno1')?.errors && this.depositForm.get('acno1')?.touched">
+            <p class="text-light"> contain digits only</p>
         </div>
 
+
         <div class="p-3 mt-2">
-            <input type="password"  [(ngModel)]="psw1"   id="pswid1"   name="paswrd1" class="form-control" placeholder="Password">
+            <input type="password"   formControlName="psw1"   id="pswid1"   name="paswrd1" class="form-control" placeholder="Password">
         </div>
+        <div *ngIf="this.depositForm.get('psw1')?.errors && this.depositForm.get('psw1')?.touched">
+            <p class="text-light"> contain digits and characters only</p>
+        </div>
+
+
         <div class="p-3 mt-2">
-            <input type="text"  [(ngModel)]="amount1"    id="amountid1"   name="amount1"  class="form-control"  placeholder="deposit amount">
+            <input type="text"       formControlName="amount1"    id="amountid1"   name="amount1"  class="form-control"  placeholder="deposit amount">
         </div>
+        <div *ngIf="this.depositForm.get('amount1')?.errors && this.depositForm.get('amount1')?.touched">
+            <p class="text-light"> contain digits only</p>
+        </div>
+      
 
         <div class="p-3 mt-2">
             <button type="button"   (click)="deposit()"           class="btn btn-outline-info">Deposit</button>
@@ -49,18 +62,32 @@
   
     <h3 class=>Withdrawl Form</h3>
 
-    <form action="">
+    <form action=""    [formGroup]="withdrwalForm">
         
          <div class="p-3 mt-2">
-            <input type="text"  [(ngModel)]="acno2"    id="acid2"   name="acnum2"  class="form-control"  placeholder="account number">
+            <input type="text"      formControlName="acno2"    id="acid2"   name="acnum2"  class="form-control"  placeholder="account number">
+        </div>
+        <div *ngIf="this.withdrwalForm.get('acno2')?.errors && this.withdrwalForm.get('acno2')?.touched">
+            <p class="text-light"> contain digits only</p>
         </div>
 
+
         <div class="p-3 mt-2">
-            <input type="password"  [(ngModel)]="psw2"   id="pswid2"   name="paswrd2" class="form-control" placeholder="Password">
+            <input type="password"   formControlName="psw2"   id="pswid2"   name="paswrd2" class="form-control" placeholder="Password">
         </div>
+        <div *ngIf="this.withdrwalForm.get('psw2')?.errors && this.withdrwalForm.get('psw2')?.touched">
+            <p class="text-light"> contain digits and characters only</p>
+        </div>
+
+
         <div class="p-3 mt-2">
-            <input type="text"  [(ngModel)]="amount2"    id="amountid2"   name="amount2"  class="form-control"  placeholder="withdrawl amount">
+            <input type="text"      formControlName="amount2"    id="amountid2"   name="amount2"  class="form-control"  placeholder="withdrawl amount">
         </div>
+        <div *ngIf="this.withdrwalForm.get('amount2')?.errors && this.withdrwalForm.get('amount2')?.touched">
+            <p class="text-light"> contain digits only</p>
+        </div>
+
+
 
         <div class="p-3 mt-2">
             <button type="button"   (click)="withdrawl()"    class="btn btn-outline-info">Withdrawl</button>

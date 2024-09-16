@@ -27,7 +27,7 @@ export class RegisterComponent implements  OnInit {
   ngOnInit(): void {
     
   }
-
+       
 
   register(){
     
@@ -50,7 +50,7 @@ export class RegisterComponent implements  OnInit {
     console.log(username,accnumber,password);
   }
   else{
-    alert("invalid form")
+    alert(" Error! invalid form")
   }
   }
   

@@ -6,14 +6,27 @@
         <div class="p-3  mt-2">
             <input type="text"  formControlName="userNAME"   id="userid"  name="user1"   class="form-control"  placeholder="user name">
         </div>
+        <div *ngIf="this.registerForm.get('userNAME')?.errors && this.registerForm.get('userNAME')?.touched">
+            <p class="text-light">must contain  characters only</p>
+        </div>
+
+
 
         <div class="p-3 mt-2">
             <input type="text"   formControlName="accNUM"      id="acid"   name="acnum1"  class="form-control"  placeholder="account number">
         </div>
+        <div *ngIf="this.registerForm.get('accNUM')?.errors && this.registerForm.get('accNUM')?.touched">
+            <p class="text-light"> contain digits only</p>
+        </div>
+
 
         <div class="p-3 mt-2">
             <input type="password"  formControlName="psw"   id="psw1"   name="paswrd1" class="form-control" placeholder="Password">
         </div>
+        <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+            <p class="text-light">contain digits and characters only</p>
+        </div>
+
 
         <div class="p-3 mt-2">
             <button type="button"   (click)="register()"   class="btn btn-outline-info">register</button>
