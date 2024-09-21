@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class DashboardComponent implements OnInit {
 
   user:any
+  acno: any;
 
   //acno1:any
  // psw1:any
@@ -19,7 +21,7 @@ export class DashboardComponent implements OnInit {
   //psw2:any
   //amount2:any
 
-constructor (private ds:DataService, private fb:FormBuilder){
+constructor (private ds:DataService, private fb:FormBuilder, private router:Router){
    this.user= this.ds.currentUser
 }
 
@@ -36,12 +38,15 @@ constructor (private ds:DataService, private fb:FormBuilder){
     amount2:['',[Validators.required,Validators.pattern('[0-9]+')]]
 
  })
- 
- 
 
-  ngOnInit(): void {
-    
-  }
+    ngOnInit(): void {
+       if(!localStorage.getItem("currentAccno")){
+           alert("Please login")
+           this.router.navigateByUrl("")
+       }
+       
+    }
+  
 
 
 
@@ -81,5 +86,17 @@ withdrawl(){
 }
 
 
+
+logout(){
+  localStorage.removeItem("currentUser")
+  localStorage.removeItem("currentAccno")
+  this.router.navigateByUrl("")
 }
 
+
+deleteParent(){
+    this.acno=JSON.parse(localStorage.getItem("currentAccno") || "")
+
+}
+
+}

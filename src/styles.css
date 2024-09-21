@@ -3,3 +3,7 @@ body{
     background-image:url("src/app/assets/banking-photography-website-16x9-3600.jpg.imgo.jpg") ;
     background-size: cover;
 }
+
+.style{
+    opacity:0;
+}

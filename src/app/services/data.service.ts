@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -18,16 +19,54 @@ export class  DataService {
    1002:{acno:1002,username:"hima",password:"123h",balance:0,transaction:[]},
    1003:{acno:1003,username:"rudhru",password:"123r",balance:0,transaction:[]}
  }
+
+
+
+//method created for calling the data stored in localstorage when it is needed
+saveData(){
+  if(this.userDetails){
+     localStorage.setItem("database",JSON.stringify(this.userDetails))
+  }
+  if(this.currentUser){
+    localStorage.setItem("currentUser",JSON.stringify(this.currentUser))
+  }
+  if(this.currentAccno){
+     localStorage.setItem("currentAccno",JSON.stringify(this.currentAccno))
+  }
+}
+
+
+//get the data from local storage
+getData(){
+  if(localStorage.getItem('database')){
+    this.userDetails=JSON.parse(localStorage.getItem('database') || "")
+  }
+  if(localStorage.getItem('currentUser')){
+    this.currentUser=localStorage.getItem('currentUser')
+  }
+  if(localStorage.getItem('currentAccno')){
+    this.currentAccno=JSON.parse(localStorage.getItem('currentAccno') || "")
+  }
+}
+
+
+        
+
     register(username:any,acno:any,psw:any){
       if(acno in this.userDetails){
         return false
       }
       else{
-         this.userDetails[acno]={acno,username,password:psw,balance:0}
-         console.log(this.userDetails[acno]);
+         this.userDetails[acno]={acno,username,password:psw,balance:0,transaction:[]}
+         console.log(this.userDetails);
+
+         this.saveData()
+
          return true
       }
     }
+
+
   
    login(acno:any,psw:any){
 
@@ -38,7 +77,10 @@ export class  DataService {
         console.log(this.currentUser);
 
         this.currentAccno=acno
-       return true
+
+        this.saveData()
+        
+        return true
 }
 
 else{
@@ -49,8 +91,6 @@ else{
 else{
      return false 
 }
-
-
    //alert("login clicked")
 }
 
@@ -70,7 +110,7 @@ if(acnum in userDetails){
 //data transfer details
   userDetails[acnum]["transaction"].push({Type:"CREDIT",amount:amnt})
 
-  
+   this.saveData()
 
   //return current amount
   return userDetails[acnum]["balance"]
@@ -87,7 +127,7 @@ else{
   
 withdrawl(acnum:any, password:any, amount:any){
   let userDetails = this.userDetails
-
+ 
 //convert string amount to number
 var amnt=parseInt(amount)
 
@@ -103,6 +143,8 @@ if(acnum in userDetails){
 userDetails[acnum]["transaction"].push({Type:"DEBIT",amount:amnt})
 console.log(userDetails);
   
+   
+this.saveData()  
 
   //return current amount
   return userDetails[acnum]["balance"]
