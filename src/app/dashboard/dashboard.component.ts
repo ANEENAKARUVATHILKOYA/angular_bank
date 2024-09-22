@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   user:any
-  acno: any;
+  acno: any 
+
+  datedetails:any
 
   //acno1:any
  // psw1:any
@@ -23,6 +25,9 @@ export class DashboardComponent implements OnInit {
 
 constructor (private ds:DataService, private fb:FormBuilder, private router:Router){
    this.user= this.ds.currentUser
+
+   //access the details
+   this.datedetails=new Date()
 }
 
  depositForm=this.fb.group({
@@ -97,6 +102,10 @@ logout(){
 deleteParent(){
     this.acno=JSON.parse(localStorage.getItem("currentAccno") || "")
 
+}
+
+cancel(){
+    this.acno=''
 }
 
 }

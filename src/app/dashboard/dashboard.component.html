@@ -1,4 +1,8 @@
 
+<div class="p-2">
+    <h5  style="color: rgb(86, 86, 149);">{{datedetails | date : 'short'}}</h5>
+</div>
+
 
 
 <div class="text-end   pt-2  pe-4">
@@ -17,7 +21,7 @@
 
  
 
-     <app-deleteconfirm  [item]="acno"></app-deleteconfirm>
+     <app-deleteconfirm   (oncancel)="cancel()"      [item]="acno"></app-deleteconfirm>
 
 
 
