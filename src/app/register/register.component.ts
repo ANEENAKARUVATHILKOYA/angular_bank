@@ -12,8 +12,7 @@ export class RegisterComponent implements  OnInit {
 
   
 
-  constructor(private ds:DataService, private router:Router, private fb:FormBuilder)  { }
-
+  constructor(private ds:DataService, private router:Router, private fb:FormBuilder)  {}
   //create reactive form of register form
       registerForm=this.fb.group({
       accNUM:['',[Validators.required,Validators.pattern('[0-9]+')]],
@@ -30,29 +29,25 @@ export class RegisterComponent implements  OnInit {
        
 
   register(){
-    
-    
 
     var username=this.registerForm.value.userNAME
     var accnumber=this.registerForm.value.accNUM
     var password=this.registerForm.value.psw
 
     if(this.registerForm.valid){
-     const result=this.ds.register(username,accnumber,password)
-      if(result){
-        alert("registerd")
-        this.router.navigateByUrl("")
-      }
-      else{
-        alert("account number is already registerd")
-      }
-
-    console.log(username,accnumber,password);
+     this.ds.register(username,accnumber,password).subscribe((result:any)=>{
+              alert(result.message)
+              this.router.navigateByUrl("") 
+     },
+      result=>{
+          alert(result.error.message) 
+          this.router.navigateByUrl("")
+    } 
+     ) 
+    //console.log(username,accnumber,password);
   }
   else{
     alert(" Error! invalid form")
   }
   }
-  
-
 }

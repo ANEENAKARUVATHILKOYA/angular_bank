@@ -31,24 +31,28 @@ export class LoginComponent implements OnInit {
     
   }
 
+
   login(){
- 
     var acnum=this.loginForm.value.acno
     var psw=this.loginForm.value.password
     
     if(this.loginForm.valid){
-   const result= this.ds.login(acnum,psw)
-   if(result){
-    alert("login success")
-    this.router.navigateByUrl("dashboard")
-   }
-   else{
-    alert(" Error! invalid password or account number")
-   }
-  }
-   else{
-    alert(" Error! invalid information")
-   }
- }
+        this.ds.login(acnum,psw).subscribe((result:any)=>{
 
+            localStorage.setItem("currentUser", JSON.stringify(result.currentUser))
+            localStorage.setItem("currentAccno", JSON.stringify(result.currentAccno))
+            localStorage.setItem("token", JSON.stringify(result.token))
+              
+            alert(result.message)
+            this.router.navigateByUrl("dashboard")   
+        },
+          result=>{
+              alert(result.error.message)
+          })
+       }
+    else{
+      alert("Error! invalid form")
+    }
+
+  }          
 }
