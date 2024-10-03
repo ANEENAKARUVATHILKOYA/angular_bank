@@ -5,7 +5,7 @@ import { DataService } from '../services/data.service';
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.css']
-})
+}) 
 export class TransactionComponent implements OnInit {
 
   transactionData:any
@@ -15,8 +15,7 @@ export class TransactionComponent implements OnInit {
      
        this.ds.getTransaction(JSON.parse(localStorage.getItem("currentAccno") || "")) .subscribe((result:any)=>{
             this.transactionData=result.transaction
-       })
-
+      })
   }
   
   ngOnInit(): void {

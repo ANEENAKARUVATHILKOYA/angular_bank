@@ -25,7 +25,9 @@ export class DashboardComponent implements OnInit {
   //amount2:any
 
 constructor (private ds:DataService, private fb:FormBuilder, private router:Router){
-   this.user = JSON.parse(localStorage.getItem("currentUser") || "")
+  if(localStorage.getItem("currentuser")){
+    this.user = JSON.parse(localStorage.getItem("currentUser") || "")
+     }
 
    //access the details
    this.datedetails=new Date()
@@ -46,10 +48,10 @@ constructor (private ds:DataService, private fb:FormBuilder, private router:Rout
  })
 
     ngOnInit(): void {
-      // if(!localStorage.getItem("currentAccno")){
-        //   alert("Please login")
-          // this.router.navigateByUrl("")
-      // }
+       if(!localStorage.getItem("token")){
+           alert("Please login")
+          this.router.navigateByUrl("")
+       }
        
     }
   
@@ -102,6 +104,7 @@ withdrawl(){
 logout(){
   localStorage.removeItem("currentUser")
   localStorage.removeItem("currentAccno")
+  localStorage.removeItem("token")
   this.router.navigateByUrl("")
 }
 
@@ -114,5 +117,15 @@ deleteParent(){
 cancel(){
     this.acno=''
 }
+
+Delete(event:any){
+    //alert(event)
+
+    this.ds.deleteacc(event).subscribe((result:any)=>{
+      alert(result.message)
+      this.logout()
+    })
+}
+
 
 }

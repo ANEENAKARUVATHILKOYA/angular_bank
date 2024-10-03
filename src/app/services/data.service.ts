@@ -94,7 +94,7 @@ getToken(){
    const data={acno, psw}
    //create api call
    return this.http.post("http://localhost:3000/login",data)
-  }
+  }   
 
 
 
@@ -102,20 +102,26 @@ getToken(){
 deposit(acnum:any, password:any, amount:any){
       const data={acnum, password, amount}
       return  this.http.post("http://localhost:3000/deposit", data, this.getToken())
-   }
-
-
-
+}
 
   
 withdrawl(acnum:any, password:any, amount:any){
   const data={acnum, password, amount}
-  return this.http.post("http://localhost:3000/withdrawl", data, this.getToken())
+  return this.http.post("http://localhost:3000/withdraw", data, this.getToken())
 } 
+
 
 getTransaction(acno:any){
      const data = {acno}
-     return this.http.post("http://localhost:3000/getTransaction", data, this.getToken())
+     return this.http.post("http://localhost:3000/transaction", data, this.getToken())
 }
 
+
+
+deleteacc(acno:any){
+       return this.http.delete("http://localhost:3000/delete/" +acno, this.getToken())
+
 }
+
+
+} 
